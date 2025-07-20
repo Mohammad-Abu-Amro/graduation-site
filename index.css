@@ -1,0 +1,217 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@media (max-width: 767px) {
+  header {
+    width: 260px;
+    text-align: center;
+  }
+  .content .content-header h1 {
+    font-size: 30px;
+    margin-top: -20px;
+  }
+
+  .content .content-header h2 {
+    font-size: 20px;
+  }
+  .content nav form {
+    width: 300px;
+  }
+  nav form #name {
+    width: 250px;
+  }
+  nav form h2 {
+    font-size: 20px;
+  }
+  nav form label:first-of-type {
+    font-size: 15px;
+    margin-left: 150px;
+  }
+  nav form #text {
+    width: 105% !important;
+    height: 45px !important;
+    margin-bottom: 30px;
+  }
+  nav form label:last-of-type {
+    font-size: 15px;
+    margin-left: 80px !important;
+  }
+  .content-header > .button {
+    gap: 0px;
+    display: flex;
+    justify-content: center;
+  }
+  .content-header .button #share,
+  .content-header .button #change {
+    font-size: 10px;
+    padding: 10px 10px;
+  }
+  nav form .button #send,
+  nav form .button #ohh {
+    font-size: 10px;
+    padding: 10px 10px;
+  }
+}
+.container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f3f4f6;
+}
+.dark-mode {
+  background-color: black;
+}
+.content .header-dark {
+  width: 100%;
+  text-align: center;
+  background-color: black;
+  height: 250px;
+  padding: 40px 20px;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  background-color: #dcdcdc;
+  height: 250px;
+  padding: 40px 20px;
+}
+header .content-header h1 {
+  font-size: 40px;
+  color: #007acc;
+}
+header .content-header h2 {
+  font-size: 30px;
+  margin-top: -10px;
+  color: rgb(234, 167, 23);
+}
+.content-header > .button {
+  gap: 0px;
+  display: flex;
+  justify-content: center;
+}
+header .content-header #share,
+header .content-header #change {
+  margin: 35px 20px;
+  padding: 10px 30px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  width: 100%;
+}
+nav form {
+  background-color: white;
+  height: 360px;
+  width: 600px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+nav form h2 {
+  color: rgb(234, 167, 23);
+}
+nav form > input {
+  width: 400px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid rgb(234, 167, 23);
+  outline: none;
+  padding: 10px;
+  font-weight: bold;
+  position: relative;
+}
+nav form > label {
+  position: absolute;
+  color: rgb(234, 167, 23);
+  margin-top: 40px;
+  margin-left: 18rem;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: white;
+  padding: 0 10px;
+  z-index: 1;
+}
+
+nav form #text {
+  position: relative;
+  width: 400px;
+  height: 45px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 2px solid rgb(234, 167, 23);
+  outline: none;
+  padding: 10px;
+  font-weight: bold;
+  min-height: 50px;
+}
+nav form > label:last-of-type {
+  position: absolute;
+  margin-top: 6.5rem;
+  margin-left: 12.5rem;
+}
+.button {
+  text-align: center;
+  display: flex;
+  gap: 50px;
+}
+nav form #send {
+  background-color: #007acc;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+}
+nav form #ohh {
+  background-color: #007acc;
+  border-radius: 10px;
+  font-weight: bold;
+
+  color: white;
+  border: none;
+  padding: 10px 20px;
+}
+nav form .count {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+nav form #count2 {
+  color: rgb(234, 167, 23);
+  font-weight: bold;
+  margin-top: 20px;
+}

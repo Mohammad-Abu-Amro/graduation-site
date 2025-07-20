@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>تهاني بالتخرج</title>
+  </head>
+  <body>
+    <audio id="partySound" src="preview2.mp3" preload="auto"></audio>
+    <audio id="celebrationSound" src="preview.mp3" preload="auto"></audio>
+    <div class="container">
+      <!-- صوت الاحتفال فقط مرة واحدة -->
+
+      <div class="content">
+        <header class="header">
+          <div class="content-header">
+            <h1>🎓مرحبا بكم في موقعي الخاص بتهنئتي بتخرجي🎓</h1>
+            <div class="button">
+              <button id="share" onclick="copyLink()">
+                📤 شارك رابط التهنئة
+              </button>
+              <button id="change">🌓 تبديل الوضع</button>
+            </div>
+            <h2>👇 بصمتك هنا تعني لي الكثير</h2>
+          </div>
+        </header>
+        <nav>
+          <form dir="rtl" autocomplete="off">
+            <h2>✍️ أرسل تهنئتك</h2>
+            <input type="text" id="name" />
+            <label for="name">الاسم الكريم</label>
+            <textarea id="text"></textarea>
+            <label for="text">اكتب تهنئتك بشكل خاصه هنا</label>
+            <div class="button">
+              <button type="submit" id="send">ارسال التهنئة</button>
+              <button id="ohh">احتفال🎉</button>
+            </div>
+            <div class="count">
+              <span id="count2">عدد التهانئ :</span>
+            </div>
+          </form>
+        </nav>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+    <!-- كود الاحتفاليه -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCPMITfeEXS-_JAd9Hc8bp3gYbsuCfYHgo",
+        authDomain: "graduation-congrats.firebaseapp.com",
+        projectId: "graduation-congrats",
+        storageBucket: "graduation-congrats.appspot.com",
+        messagingSenderId: "464860244122",
+        appId: "1:464860244122:web:f62b82732c3f8d531ed723",
+        measurementId: "G-RT7BS0QEQ0",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      const form = document.querySelector("form");
+      const nameInput = document.getElementById("name");
+      const messageInput = document.getElementById("text");
+      const partySound = document.getElementById("partySound");
+
+      const count2 = document.getElementById("count2");
+
+      async function getCongratsCount() {
+        try {
+          const snapshot = await db.collection("congratulations").get();
+          count2.textContent = `عدد التهاني: ${snapshot.size}`;
+        } catch (e) {
+          console.error("خطأ بجلب عدد التهاني:", e);
+        }
+      }
+      getCongratsCount();
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (!name || !message) {
+          alert("يرجى تعبئة الاسم والتهنئة");
+          return;
+        }
+
+        try {
+          await db.collection("congratulations").add({
+            name,
+            message,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+
+          alert("🎉 تم إرسال التهنئة بنجاح");
+          form.reset();
+          getCongratsCount();
+
+          partySound.play();
+
+          // إظهار تأثير الكونفيتي
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        } catch (error) {
+          alert("❌ حدث خطأ أثناء الإرسال: " + error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
